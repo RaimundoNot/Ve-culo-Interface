@@ -25,8 +25,20 @@ public class carroController {
 		} else {
 			for(Carro c : list) {
 				JOptionPane.showMessageDialog(null,
-				"Modelo: "+ c.getModelo() + "\nAno: " + c.getAno()+ "\nValor: "+ c.getValor());
+				"Modelo: "+ c.getModelo() + "\nAno: " + c.getAno()+ "\nValor: R$ "+ c.getValor());
 			}
 		}
 	}
+	
+	public Carro buscar(String modelo) {
+	    for(Carro c : list) {
+	        if (c.getModelo().equals(modelo)) {
+	            JOptionPane.showMessageDialog(null, "Carro encontrado: " + c.getModelo());
+	            return c;
+	        }
+	    }
+	    JOptionPane.showMessageDialog(null, "Carro não encontrado.");
+	    return null;
+	}
+	
 }

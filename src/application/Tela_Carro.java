@@ -26,6 +26,9 @@ public class Tela_Carro implements ActionListener{
 	
 	JButton salvar = new JButton("Salvar");
 	JButton btlistar = new JButton("Listar");
+	JButton cancelar = new JButton ("Cancelar");
+	JButton buscar = new JButton("Buscar");
+	JTextField textBuscar = new JTextField();
 	
 	Carro car = new Carro();
 	carroController cc = new carroController();
@@ -37,9 +40,9 @@ public class Tela_Carro implements ActionListener{
 	
 	void Tela() {
 		
-		tela.setSize(350, 250);
+		tela.setSize(400, 250);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		tela.setLocation(250, 250);
+		tela.setLocationRelativeTo(null);
 		
 		painel.setLayout(null);
 		
@@ -66,6 +69,9 @@ public class Tela_Carro implements ActionListener{
 		textVal.setBounds(70, 95, 120, 20);
 		painel.add(textVal);
 		
+		textBuscar.setBounds(235, 15, 120, 20);
+		painel.add(textBuscar);
+		
 		
 		salvar.setBounds(10, 150, 75, 35);
 		salvar.addActionListener(this);
@@ -75,6 +81,14 @@ public class Tela_Carro implements ActionListener{
 		btlistar.setBounds(90, 150, 75, 35);
 		btlistar.addActionListener(this);
 		painel.add(btlistar);
+		
+		cancelar.setBounds(170, 150, 90, 35);
+		cancelar.addActionListener(this);
+		painel.add(cancelar);
+		
+		buscar.setBounds(255, 40, 75, 35);
+		buscar.addActionListener(this);
+		painel.add(buscar);
 		
 		tela.getContentPane().add(painel);
 		tela.setVisible(true);
@@ -105,6 +119,24 @@ public class Tela_Carro implements ActionListener{
 		
 		if(e.getSource() == btlistar) {
 			cc.listar();
+		}
+		
+		if(e.getSource() == cancelar) {
+			tela.dispose();
+		}
+		
+		if(e.getSource() == buscar) {
+		    Carro carroEncontrado = cc.buscar(textBuscar.getText());
+		    if (carroEncontrado != null) {
+		        textModel.setText(carroEncontrado.getModelo());
+		        textAno.setText(String.valueOf(carroEncontrado.getAno()));
+		        textVal.setText(String.valueOf(carroEncontrado.getValor()));
+		    } else {
+		        textModel.setText("");
+		        textAno.setText("");
+		        textVal.setText("");
+		        textBuscar.setText("");
+		    }
 		}
 	}
 
