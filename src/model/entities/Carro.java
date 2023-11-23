@@ -6,8 +6,7 @@ public class Carro {
 	private Integer ano;
 	private Double ipva;
 
-	
-	void calcIpva() {
+	public double calcIpva() {
 		if (ano < 2010) {
 			ipva = valor * 2 / 100;
 		} else if (ano < 2019) {
@@ -15,6 +14,7 @@ public class Carro {
 		} else {
 			ipva = valor * 7 / 100;
 		}
+		return ipva;
 	}
 
 	public String getModelo() {
@@ -48,7 +48,5 @@ public class Carro {
 	public void setIpva(Double ipva) {
 		this.ipva = ipva;
 	}
-
-	
 
 }
