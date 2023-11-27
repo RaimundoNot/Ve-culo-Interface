@@ -25,13 +25,14 @@ public class Tela_Carro implements ActionListener {
 	JTextField textVal = new JTextField();
 	JLabel lbIpva = new JLabel("IPVA: ");
 	JTextField textIpva = new JTextField();
-
+	JTextField textBuscar = new JTextField();
+	
 	JButton salvar = new JButton("Salvar");
 	JButton btlistar = new JButton("Listar");
-	JButton cancelar = new JButton("Cancelar");
+	JButton deletar = new JButton("Deletar");
 	JButton atualizar = new JButton("Atualizar");
 	JButton buscar = new JButton("Buscar");
-	JTextField textBuscar = new JTextField();
+	
 
 	Carro car = new Carro();
 	carroController cc = new carroController();
@@ -86,9 +87,9 @@ public class Tela_Carro implements ActionListener {
 		btlistar.addActionListener(this);
 		painel.add(btlistar);
 
-		cancelar.setBounds(265, 150, 90, 35);
-		cancelar.addActionListener(this);
-		painel.add(cancelar);
+		deletar.setBounds(265, 150, 90, 35);
+		deletar.addActionListener(this);
+		painel.add(deletar);
 
 		buscar.setBounds(255, 40, 75, 35);
 		buscar.addActionListener(this);
@@ -123,14 +124,20 @@ public class Tela_Carro implements ActionListener {
 			textModel.setText("");
 			textAno.setText("");
 			textVal.setText("");
+			textIpva.setText("");
 		}
 
 		if (e.getSource() == btlistar) {
 			cc.listar();
 		}
 
-		if (e.getSource() == cancelar) {
-			tela.dispose();
+		if (e.getSource() == deletar) {
+		    String modelo = textModel.getText(); // substitua 'seuCampoDeTexto' pelo nome do seu campo de texto
+		    cc.deletar(modelo);
+		    textModel.setText("");
+			textAno.setText("");
+			textVal.setText("");
+			textIpva.setText("");
 		}
 
 		if (e.getSource() == buscar) {
@@ -161,6 +168,7 @@ public class Tela_Carro implements ActionListener {
 		}
 
 		if (textIpva != null) {
+	
 			textIpva.setText(cc.toString());
 		}
 

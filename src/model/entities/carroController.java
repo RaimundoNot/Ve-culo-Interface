@@ -9,13 +9,13 @@ public class carroController {
 	public static ArrayList<Carro> list = new ArrayList<Carro>();
 
 	public void inserir(Carro carro) {
-		Carro car = new Carro();
-		car.setModelo(carro.getModelo());
-		car.setAno(carro.getAno());
-		car.setValor(carro.getValor());
-		// car.calcIpva();
-		JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso!");
-		list.add(car);
+	    Carro car = new Carro();
+	    car.setModelo(carro.getModelo());
+	    car.setAno(carro.getAno());
+	    car.setValor(carro.getValor());
+	    car.calcIpva(); 
+	    JOptionPane.showMessageDialog(null, "Dados cadastrados com sucesso!");
+	    list.add(car);
 	}
 
 	public void listar() {
@@ -53,14 +53,25 @@ public class carroController {
 			JOptionPane.showMessageDialog(null, "Dados atualizados");
 		}
 	}
+	
+	public void deletar(String modelo) {
+	    Carro carro = buscar(modelo, false);
+	    if (carro != null) {
+	        list.remove(carro);
+	        JOptionPane.showMessageDialog(null, "Carro deletado");
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Carro não encontrado");
+	    }
+	}
 
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for (Carro c : list) {
-			if (c != null) {
-				sb.append(String.format("%.2f", c.calcIpva())).append("\n");
-			}
-		}
-		return sb.toString();
+	    StringBuilder sb = new StringBuilder();
+	    for (Carro c : list) {
+	        if (c != null) {
+	            sb.append("R$ ").append(String.format("%.2f", c.calcIpva()));
+	        }
+	    }
+	    return sb.toString();
 	}
+
 }
